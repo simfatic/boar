@@ -5,7 +5,7 @@ use Simfatic\Boar\Library\Validator;
 
 class Required extends Validator
 {
-    public $message = "The field is required";
+    public $message = "{{field}} is required";
     
     public function validate($field, $post)
     {

@@ -23,6 +23,7 @@ class BoarTest extends TestCase{
         
         $this->assertNotEmpty($res->errors["name"]);
         $this->assertNotEmpty($res->errors["email"]);
+        $this->assertEquals($res->errors["name"], "name is required");
     }
     
     public function testRegisterCustomValidationGetsCalled()

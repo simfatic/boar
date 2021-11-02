@@ -9,6 +9,9 @@ class CommonValidations
         $catalogue->register(["required", "areRequired", "isRequired"],
                         fn() => new Validations\Required());
         
+        $catalogue->register(["maxLength", "maxLen"],
+                        fn($maxlen) => new Validations\MaxLength($maxlen));
+        
         return $catalogue;            
     }
 }
