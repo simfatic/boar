@@ -43,6 +43,28 @@ class FieldValidator
         }
     }
     
+    public function withOption(string $name, $value)
+    {
+        if(!empty($this->last_validator))
+        {
+            if(isset($this->validators[$this->last_validator]))
+            {
+                $this->validators[$this->last_validator]->$name = $value;
+            }
+        }
+    }
+    
+    public function withSpace()
+    {
+        if(!empty($this->last_validator))
+        {
+            if(isset($this->validators[$this->last_validator]))
+            {
+                $this->validators[$this->last_validator]->extra_characters .= " ";
+            }
+        }
+    }
+    
     public function validate($post)
     {
         foreach($this->validators as $val => $validator)

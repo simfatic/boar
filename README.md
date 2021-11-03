@@ -14,11 +14,16 @@ if($res->hasErrors())
 
 ```
 
-## Custom validation error message
+## Customizing the error message
 ```php
 $v->field("name")->maxLength(10)->withMessage("name should be shorter than {{max_length}}");
 
 ```
+The message string is a template. 
+`{{field}}` is replaced with the name of the field. For example,
+`"{{field}} is required."` when used with field `address` becomes
+`"address is required"`. 
+The message template can contain values from the specific validation as well. For example, `max_length` for MaxLength validation and `min_length` for MinLength validation.
 
 ## All validations should be explicitly declared
 
