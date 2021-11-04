@@ -27,6 +27,22 @@ class CommonValidations
         $catalogue->register(["digits", "digitsOnly"],
                         fn() => new Validations\DigitsOnly());
                         
+        $catalogue->register(["number", "isNumber", "areNumbers"],
+                        fn() => new Validations\Number());
+                        
+        $catalogue->register(["lessThan", "isLessThan", "areLessThan"],
+                        fn($num) => new Validations\LessThan($num));
+                        
+        $catalogue->register(["lessThanOrEqualTo", "max"],
+                        fn($num) => new Validations\LessThanOrEqualTo($num));
+        
+        $catalogue->register(["greaterThan", "isGreaterThan", "areGreaterThan"],
+                        fn($num) => new Validations\GreaterThan($num));
+                        
+        $catalogue->register(["greaterThanOrEqualTo", "min",
+                                "isGreaterThanOrEqualTo", "areGreaterThanOrEqualTo"],
+                        fn($num) => new Validations\GreaterThanOrEqualTo($num)); 
+                                               
         return $catalogue;            
     }
 }
