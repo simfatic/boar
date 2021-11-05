@@ -37,6 +37,16 @@ class Boar
         return $field; 
     }
     
+    public function fields($arr_fields)
+    {
+        $fc = new FieldValidatorCollection($this->catalogue);
+        foreach($arr_fields as $field)
+        {
+            $fc->addField($this->field($field));
+        }
+        return $fc;
+    }
+    
     public function validate($post)
     {
         $result = new Result();

@@ -21,15 +21,20 @@ class FieldValidator
     {
         if($this->catalogue->isRegistered($function))
         {
-            $this->validators[$function] =  
-                $this->catalogue->createValiator($function, $arguments);
-            $this->last_validator = $function;
+            $this->initValidator($function, $arguments);
         }
         else
         {
             trigger_error('Call to undefined method '.__CLASS__.'::'.$function.'()', E_USER_ERROR);         
         }
         return $this;
+    }
+    
+    public function initValidator($function, $arguments)
+    {
+        $this->validators[$function] =  
+                $this->catalogue->createValiator($function, $arguments);
+        $this->last_validator = $function;
     }
     
     public function withMessage(string $msg)
@@ -41,6 +46,7 @@ class FieldValidator
                 $this->validators[$this->last_validator]->message = $msg;
             }
         }
+        return $this;
     }
     
     public function withOption(string $name, $value)
@@ -52,6 +58,7 @@ class FieldValidator
                 $this->validators[$this->last_validator]->$name = $value;
             }
         }
+        return $this;
     }
     
     public function withSpace()
@@ -63,6 +70,7 @@ class FieldValidator
                 $this->validators[$this->last_validator]->extra_characters .= " ";
             }
         }
+        return $this;
     }
     
     public function validate($post)
